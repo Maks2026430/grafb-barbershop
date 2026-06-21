@@ -1,0 +1,35 @@
+# systemd-юнит для сервера ГРАФЪ (сайт + ИИ-прокси одним процессом Node).
+#
+# Установка на VPS (Ubuntu/Debian):
+#   1) Положите проект, например, в /var/www/grafb и соберите:
+#        cd /var/www/grafb && npm install && npm run build
+#   2) Создайте .env с ключом:  cp .env.example .env && nano .env
+#   3) Поправьте пути ниже под себя (WorkingDirectory, ExecStart, User)
+#      и проверьте путь к npm:  which npm
+#   4) Установите и запустите:
+#        sudo cp deploy/grafb.service /etc/systemd/system/grafb.service
+#        sudo systemctl daemon-reload
+#        sudo systemctl enable --now grafb
+#        sudo systemctl status grafb     # проверить, что запустился
+#   Логи:  journalctl -u grafb -f
+#
+# Ключ OPENAI_API_KEY сервер читает из .env в WorkingDirectory (через dotenv) —
+# в этом файле секретов нет.
+
+[Unit]
+Description=GRAFB barbershop (site + AI proxy)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/grafb
+ExecStart=/usr/bin/npm start
+Environment=NODE_ENV=production
+Environment=PORT=8787
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
