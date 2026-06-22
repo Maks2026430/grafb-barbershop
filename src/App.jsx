@@ -17,8 +17,8 @@ import imgIgor from "./assets/barber1.jpg";
 import imgArtem from "./assets/barber2.jpg";
 import imgDenis from "./assets/barber3.jpg";
 import imgMikhail from "./assets/barber4.jpg";
-import imgOleg from "./assets/oleg.jpg";
-import imgKirill from "./assets/kirill.jpg";
+import imgOleg from "./assets/barber5.jpg";
+import imgKirill from "./assets/barber6.jpg";
 import imgHero from "./assets/group2.jpg";
 import imgAbout from "./assets/about.jpg";
 
@@ -580,6 +580,7 @@ function HomeView({ goBooking, setTab }) {
         <div className="footer-name">{SALON.name}</div>
         <div className="footer-line">{SALON.address}</div>
         <div className="footer-line">{SALON.hours}</div>
+        <div className="footer-tag">•Барбершоп•</div>
       </div>
 
       <MainButton label="Записаться" onClick={() => goBooking(null)} />
@@ -1219,6 +1220,7 @@ const CSS = `
 .footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--hairline); margin-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .footer-name { font-family: var(--font-display); font-size: 18px; margin-top: 8px; letter-spacing: 0.05em; }
 .footer-line { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.footer-tag { font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 6px; }
 
 .mainbutton-wrap { padding: 14px 20px 22px; }
 .mainbutton {
